@@ -10,7 +10,7 @@ class Select extends Connection
 
   public function getInfo($value = null)
   {
-
+    
     //Si getInfo() recibe algún parametro (GET/POST) se lo pasará al IF, sino, entrará en el ELSE
     if ($value) {
       //Creo la query que quiero lanzar
@@ -29,8 +29,9 @@ class Select extends Connection
         /*echo $row["alum_nombre"] . " " . $row["alum_apellido1"] . " " .
           $row["alum_apellido2"] . " " . $row["alum_dni"] . "<br>";*/
 
-          $output .= "<td>" . $row["alum_nombre"] . "</td>";
+          $output .= "<tr>";
           $output .= "<td>" . $row["alum_dni"] . "</td>";
+          $output .= "<td>" . $row["alum_nombre"] . "</td>";
           $output .= "<td>" . $row["alum_apellido1"] . "</td>";
           $output .= "<td>" . $row["alum_apellido2"] . "</td>";
 
@@ -41,6 +42,9 @@ class Select extends Connection
           } else {
             $output .= "<td>" . $row["alum_nota"] . "</td>";
           }
+          $output .= "<td><a href='deleteAlumn.php?id=" . $row["alum_dni"] . "'>Borrar alumno</a></td>";
+          $output .= "<td><a href='formUpdate.php?alum_dni=" . $row["alum_dni"] . "&name=". $row["alum_nombre"] . "&firstname=" 
+          . $row["alum_apellido1"] . "&firstname=" . $row["alum_apellido2"] . "&nota=". $row["alum_nota"] ."'>Actualizar alumno</a></td>";
           $output .= "</tr>";
       }
     
@@ -54,8 +58,8 @@ class Select extends Connection
           $row["alum_apellido2"] . " " . $row["alum_dni"] . "<br>";*/
 
           $output .= "<tr>";
-          $output .= "<td>" . $row["alum_nombre"] . "</td>";
           $output .= "<td>" . $row["alum_dni"] . "</td>";
+          $output .= "<td>" . $row["alum_nombre"] . "</td>";
           $output .= "<td>" . $row["alum_apellido1"] . "</td>";
           $output .= "<td>" . $row["alum_apellido2"] . "</td>";
           if($row["alum_nota"] < 4) {
@@ -63,10 +67,14 @@ class Select extends Connection
           } else {
             $output .= "<td>" . $row["alum_nota"] . "</td>";
           }
+          $output .= "<td><a href='deleteAlumn.php?alum_dni=" . $row["alum_dni"] . "'>Borrar alumno</a></td>";
+          /*$output .= "<td><a href='formUpdate.php?alum_dni=" . $row["alum_dni"] . "&name=". $row["alum_nombre"] . "&firstname=" 
+          . $row["alum_apellido1"] . "&firstname=" . $row["alum_apellido2"] . "&nota=". $row["alum_nota"] ."'>Actualizar alumno</a></td>";*/
+          $output .= "<td><a href='formUpdate.php?alum_dni=" . $row["alum_dni"] . "'>Actualizar alumno</a></td>";
           $output .= "</tr>";
-      }
-      
+      }   
     }
+    //var_dump($output);
     return $output;
   }
 }
