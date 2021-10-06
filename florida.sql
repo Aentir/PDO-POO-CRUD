@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-09-2021 a las 15:00:36
+-- Tiempo de generación: 06-10-2021 a las 13:24:00
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.10
 
@@ -16,9 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
-CREATE DATABASE IF NOT EXISTS florida;
-USE florida;
 
 --
 -- Base de datos: `florida`
@@ -34,16 +31,19 @@ CREATE TABLE `t_alumnos` (
   `alum_dni` varchar(9) NOT NULL,
   `alum_nombre` varchar(20) NOT NULL,
   `alum_apellido1` varchar(20) NOT NULL,
-  `alum_apellido2` varchar(20) NOT NULL
+  `alum_apellido2` varchar(20) NOT NULL,
+  `alum_nota` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `t_alumnos`
 --
 
-INSERT INTO `t_alumnos` (`alum_dni`, `alum_nombre`, `alum_apellido1`, `alum_apellido2`) VALUES
-('20123456A', 'Juan', 'Perez', 'Martinez'),
-('20123456B', 'Juan', 'Perez', 'Martinez');
+INSERT INTO `t_alumnos` (`alum_dni`, `alum_nombre`, `alum_apellido1`, `alum_apellido2`, `alum_nota`) VALUES
+('2342344S', 'Luz', 'Cuesta', 'Mogollón', 2),
+('25383297K', 'Antonio', 'Bragueta', 'Suelta', 0),
+('3748523Ñ', 'Perico', 'Fulano', 'Palotes', 6),
+('44921301R', 'Armando', 'Bronca', 'Segura', 1);
 
 --
 -- Índices para tablas volcadas
