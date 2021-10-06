@@ -1,8 +1,10 @@
 <?php
-    require_once "autoloader.php";
 
-    $info = new Select();
-    $search = isset($_GET["alum_nombre"]) ? $_GET["alum_nombre"] : "";
+require_once "autoloader.php";
+
+$info = new Alumno();
+$search = isset($_GET["alum_nombre"]) ? $_GET["alum_nombre"] : "";
+
 ?>
 
 <!DOCTYPE html>
@@ -15,24 +17,24 @@
   <title>Información de alumnos</title>
 </head>
 
-  <body>
-    <form action="" method="get">
-      <label>Nombre a buscar: </label>
-      <input type="text" name="alum_nombre">
-      <input type="submit" name="enviando" value="Enviar">
-    </form>
-    <table border="1">
-      <tr>
-        <th>DNI</th>
-        <th>Nombre</th>
-        <th>Primer Apellido</th>
-        <th>Segundo Apellido</th>
-        <th>Nota del Alumno</th>
-      </tr>
-        <?= $info->getInfo($search) ?>
-    </table>
-      <a href="index.php">Volver a la tabla</a>
-      <a href="formInsert.php">Añadir nuevo</a>
-  </body>
+<body>
+  <form action="" method="get">
+    <label>Nombre a buscar: </label>
+    <input type="text" name="alum_nombre">
+    <input type="submit" name="enviando" value="Enviar">
+  </form>
+  <table border="1">
+    <tr>
+      <th>DNI</th>
+      <th>Nombre</th>
+      <th>Primer Apellido</th>
+      <th>Segundo Apellido</th>
+      <th>Nota del Alumno</th>
+    </tr>
+    <?= $info->showInfo($search) ?>
+  </table>
+  <a href="index.php">Volver a la tabla</a>
+  <a href="formInsert.php">Añadir nuevo</a>
+</body>
 
 </html>
