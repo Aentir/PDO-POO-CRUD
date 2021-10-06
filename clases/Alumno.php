@@ -32,7 +32,6 @@ class Alumno extends Connection
       array_push($getArray, $row);
     }
 
-
     return $getArray;
   } // getInfo()
 
@@ -69,4 +68,34 @@ class Alumno extends Connection
 
     return $output;
   } // showInfo()
+
+  public function update($values)
+  {
+    /* Sin values la aplicación muere */
+    if (!$values) die("Sin value la aplicación muere...");
+
+    /* ojo a la query user where */
+    $query = "UPDATE t_alumnos SET alum_nombre = :alum_nombre, alum_apellido1 = :alum_apellido1, alum_apellido2 = :alum_apellido2, alum_nota = :alum_nota WHERE alum_dni = :alum_dni";
+
+    /* Prepara query */
+    $result = $this->db->prepare($query);
+
+    $result->bindParam(":alum_nombre",    $values["alum_nombre"], PDO::PARAM_STR, 25);
+    $result->bindParam(":alum_apellido1", $values["alum_apellido1"], PDO::PARAM_STR, 25);
+    $result->bindParam(":alum_apellido2", $values["alum_apellido2"], PDO::PARAM_STR, 25);
+    $result->bindParam(":alum_nota",      $values["alum_nota"], PDO::PARAM_STR, 2);
+    $result->bindParam(":alum_dni",       $values["alum_dni"], PDO::PARAM_STR, 9);
+
+    try {
+      /* Ejecuta en un try catch para resolver errores */
+      $result->execute();
+
+      return true;
+    } catch (\Throwable $th) {
+      /* cuidado los errores no son muy descriptivos */
+      echo "error: $th";
+
+      return false;
+    }
+  } // update()
 }
